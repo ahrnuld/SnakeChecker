@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+    </rel>
+
+    <!-- Importing Bootstrap 4-->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/popper.js"></script>
+    <script src="bootstrap/js/utils.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+</head>
+
+<body>
+    <!-- Start modal -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Results</h1>
+
+                <% data.forEach(function(result) { %>
+                    <h4>
+
+                        <%= result.name %> 
+                    </h4>
+                    <p>
+                    Tests passed: <%= result.tests_passed %> / 8 @ <%= new Date(result.datetime).toUTCString(); %><br/>
+                        <% result.report.forEach(function(report) { %>
+                            <% if(!report.pass) { %>
+                                <span style="
+                                        font-size: 12px;
+                                        display: block;
+                                        float: left;
+                                        margin-right: 5px;
+                                        color: #c00;">X</span>
+                            <% } else { %>
+                                    <span style="
+                                        font-size: 12px;
+                                        display: block;
+                                        float: left;
+                                        margin-right: 5px;
+                                        color: #00d6b2;">✓</span>
+                            <% } %>
+                            <%= report.title %>    
+                            <br/>
+                        <% }); %>
+                    </p>
+            <% }); %> 
+            </div>
+        </div>
+
+        <!--Load Assets first then load the game that uses the assets-->
+        <script src="/assets_1/js/settings.js"></script>
+        <script src="/assets_1/js/fixes.js"></script>
+        <script src="/assets_1/js/snake.js"></script>
+        <script src="/assets_1/js/apple.js"></script>
+        <script src="/assets_1/js/game.js"></script>
+</body>
+
+</html>

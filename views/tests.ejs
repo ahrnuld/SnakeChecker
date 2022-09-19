@@ -40,13 +40,15 @@
           })
           .on('end', function(test) {
             $('#submit-button').prop("disabled", false);
-            var $input = $('<input type="hidden" name="report" />')
+            $( "#report" ).remove();
+            var $input = $('<input type="hidden" name="report" id="report" />')
             $input.val(JSON.stringify(report));
             $('#test-form').append($input);
           });
         </script>
 
       </div>
+      <form action="/results" method="post" id = "test-form">
       <div class = "col-12 text-center">
         <div class = "row">
           <div class = "col-12">
@@ -59,10 +61,9 @@
             <input id = "submit-button" disabled = "true" type="submit" value="Stuur in">
           </div>
         </div>
-          <form action="/results" method="post" id = "test-form">
-          </form>
       </div>
     </div>
+  </form>
 
     <div style="position: absolute; top: 0px; left: 0px;">
       <span id="score" style="display: none;">Score: 0</span>

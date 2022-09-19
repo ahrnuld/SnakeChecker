@@ -1,4 +1,4 @@
-    Window.Game.frameCounterLimit = frameCounterLimit;
+    Window.Game.framesPerSecond = framesPerSecond;
     Window.Game.eatApple = eatApple;
     Window.Game.pauze = new Proxy(this, {
         get: function() {
