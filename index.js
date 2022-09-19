@@ -7,6 +7,14 @@ const path = require('path');
 const fsExtra = require('fs-extra');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' })
+var https = require('https');
+var fs = require('fs');
+
+var credentials = {
+  key: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/chain.pem')
+};
 
 // App setup with express 
 const app = express();
@@ -23,7 +31,15 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.listen(3000, () => console.log('listening at port 3000'));
+
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(3000);
+httpsServer.listen(3443);
+
+//app.listen(3000, () => console.log('listening at port 3000'));
 
 app.use(function (err, req, res, next) {
   console.log(err);
