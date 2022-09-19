@@ -33,10 +33,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(3000);
 httpsServer.listen(3443);
 
 //app.listen(3000, () => console.log('listening at port 3000'));
