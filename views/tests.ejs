@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tests</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+  <link rel="stylesheet" href="mocha/mocha.css">
+
+  <!-- Importing Bootstrap 4-->
+  <script src="bootstrap/js/jquery.js"></script>
+  <script src="bootstrap/js/popper.js"></script>
+  <script src="bootstrap/js/utils.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+  <div id="mocha"></div>
+  <body class = "content">
+    <div class = "row">
+      <div class = "col-12">
+
+        <canvas style="display: none;" width="400" height="400" id="game" ></canvas>
+
+        <script src="mocha/mocha.js"></script>
+        <script src="chai/chai.js"></script>
+        <script>mocha.setup('bdd')</script>
+    
+        <script src="testing/tests.js"></script>
+    
+        <script>
+          let report = [];
+          let passes = 0;
+          mocha.run()
+          .on('test', function(test){
+          }).on('test end', function(test){
+          })
+          .on('pass', function(test){
+            report.push({title : test.title, pass : true});
+          })
+          .on('fail', function(test){
+            report.push({title : test.title, pass : false});
+          })
+          .on('end', function(test) {
+            $('#submit-button').prop("disabled", false);
+            var $input = $('<input type="hidden" name="report" />')
+            $input.val(JSON.stringify(report));
+            $('#test-form').append($input);
+          });
+        </script>
+
+      </div>
+      <div class = "col-12 text-center">
+        <div class = "row">
+          <div class = "col-12">
+            <input type="text" name="firstName" id="firstName" placeholder="Voornaam">
+          </div>
+          <div class = "col-12">
+            <input type="text" name="lastName" id="lastName" placeholder="Achternaam">
+          </div>
+          <div class = "col-12">
+            <input id = "submit-button" disabled = "true" type="submit" value="Stuur in">
+          </div>
+        </div>
+          <form action="/results" method="post" id = "test-form">
+          </form>
+      </div>
+    </div>
+
+    <div style="position: absolute; top: 0px; left: 0px;">
+      <span id="score" style="display: none;">Score: 0</span>
+    </div>
+    <script>
+
+
+    </script>
+    <!--Load Assets first then load the game that uses the assets-->
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/fixes.js"></script>
+    <script src="assets/js/snake.js"></script>
+    <script src="assets/js/apple.js"></script>
+    <script src="assets/js/game.js"></script>
+</body>
+</html>
