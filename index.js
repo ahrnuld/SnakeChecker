@@ -11,9 +11,8 @@ var https = require('https');
 var fs = require('fs');
 
 var credentials = {
-  key: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/cert.pem'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/starwave.nl/chain.pem')
+  key: fs.readFileSync('/etc/ssl/virtualmin/169971286591058/ssl.key'),
+  cert: fs.readFileSync('/etc/ssl/virtualmin/169971286591058/ssl.cert')
 };
 
 // App setup with express 
